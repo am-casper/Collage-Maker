@@ -27,7 +27,7 @@ class ViewFrameScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
                     children: [
-                      Image.asset("assets/icons/pfp.png"),
+                      Image.asset("assets/images/pfp.png"),
                       const SizedBox(
                         width: 10,
                       ),

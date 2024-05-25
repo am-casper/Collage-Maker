@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furrl/presentation/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 PreferredSizeWidget furrlAppBar(String title, BuildContext context) {
@@ -16,9 +17,16 @@ PreferredSizeWidget furrlAppBar(String title, BuildContext context) {
         children: [
           Row(
             children: [
-              IconButton(onPressed: () {
-                Navigator.of(context).pop();
-              }, icon: const Icon(Icons.arrow_back)),
+              IconButton(
+                  onPressed: () {
+                    if (title == "View Frame") {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  icon: const Icon(Icons.arrow_back)),
               const SizedBox(
                 width: 15,
               ),

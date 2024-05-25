@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furrl/presentation/app/bloc/app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:furrl/presentation/view_frame/view_frame_screen.dart';
+import 'package:furrl/presentation/home/home_screen.dart';
 
 
 class FurrlApp extends StatefulWidget {
@@ -24,7 +24,7 @@ class _FurrlAppState extends State<FurrlApp> {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
               useMaterial3: true,
             ),
-            home: const ViewFrameScreen(),
+            home: const HomeScreen(),
           );
         },
       ),
