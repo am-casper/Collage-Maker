@@ -141,6 +141,41 @@ class EditFrameScreen extends StatelessWidget {
                                                                     .top));
                                           },
                                           child: GestureDetector(
+                                            onDoubleTap: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext ctx) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Delete Image"),
+                                                    content: const Text(
+                                                        "Are you sure you want to delete this image?"),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(ctx);
+                                                        },
+                                                        child: const Text(
+                                                            "Cancel"),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(ctx);
+                                                          context
+                                                              .read<
+                                                                  EditFrameBloc>()
+                                                              .add(DeleteImageEvent(
+                                                                  index:
+                                                                      index));
+                                                        },
+                                                        child: const Text(
+                                                            "Delete"),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
                                             onTap: () {
                                               context.read<EditFrameBloc>().add(
                                                   UpdateImageIndexEvent(
@@ -177,6 +212,14 @@ class EditFrameScreen extends StatelessWidget {
                           children: [
                             TextButton(
                               onPressed: () {
+                                if (state.images.length < 4) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Add atleast 4 images"),
+                                    ),
+                                  );
+                                  return;
+                                }
                                 context.read<EditFrameBloc>().add(
                                     SaveCollageEvent(
                                         controller: screenshotController));

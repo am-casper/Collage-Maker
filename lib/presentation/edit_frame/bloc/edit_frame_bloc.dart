@@ -23,6 +23,7 @@ class EditFrameBloc extends Bloc<EditFrameEvent, EditFrameState> {
     on<UpdateImagePositionEvent>(_onUpdateImagePosition);
     on<UpdateImageScaleEvent>(_onUpdateImageScale);
     on<UpdateImageIndexEvent>(_onUpdateImageIndex);
+    on<DeleteImageEvent>(_onDeleteImage);
   }
 
   FutureOr<void> _onAddImages(
@@ -158,5 +159,12 @@ class EditFrameBloc extends Bloc<EditFrameEvent, EditFrameState> {
       sourcePath: img.path,
     );
     return File(croppedImage!.path);
+  }
+
+  FutureOr<void> _onDeleteImage(
+      DeleteImageEvent event, Emitter<EditFrameState> emit) {
+    List<ImageModel> updatedImages = state.images;
+    updatedImages.removeAt(event.index);
+    emit(EditFrameState(images: updatedImages, isImageSelected: true));
   }
 }
